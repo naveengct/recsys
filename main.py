@@ -8,7 +8,7 @@ import implicit
 import pandas as pd
 
 movies = pd.read_csv("Data\items.csv")
-ratings = pd.read_csvr"Data\ratings.csv")
+ratings = pd.read_csv("Data\ratings.csv")
 
 @app.get('/collaborative/{user_id}')
 async def root1(user_id):
