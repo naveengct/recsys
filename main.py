@@ -7,7 +7,7 @@ from sklearn.neighbors import NearestNeighbors
 import implicit
 import pandas as pd
 
-movies = pd.read_csv("Data\items.csv")
+movies = pd.read_csv(r"Data\items.csv")
 ratings = pd.read_csv(r"Data\ratings.csv")
 
 @app.get('/collaborative/{user_id}')
