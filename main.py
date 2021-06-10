@@ -7,6 +7,7 @@ from sklearn.neighbors import NearestNeighbors
 import implicit
 import pandas as pd
 import os
+import numpy as np
 
 movies = pd.read_csv("Data/items.csv")
 ratings = pd.read_csv("Data/ratings.csv")
@@ -40,3 +41,16 @@ async def root2(input):
     df = pd.DataFrame(recommend_frame,index=range(1,11))
     return {'Top 10 Prediction for movie: {}'.format(movie_): df}
     
+@app.get('/deep_matrix/{user_id}')
+async def root3(user_id):
+    embedding = np.load('Data/embedding.npy')
+    model = pickle.load(open('Models/deep_matrix_factorzation.sav', 'rb'))
+    _, indices = model.kneighbors(embedding,n_neighbors=10)
+    recommended = indices[int(user_id) - 1]
+    recommend_frame = []
+    for val in recommended:
+        movie_idx = ratings.iloc[val]['movie_id']
+        idx = movies[movies['movie_id'] == movie_idx].index
+        recommend_frame.append({'Title':movies.iloc[idx]['title'].values[0]})
+    df = pd.DataFrame(recommend_frame,index=range(1,11))
+    return {'Top 10 Prediction for movie: {}'.format(user_id): df}
