@@ -8,10 +8,8 @@ import implicit
 import pandas as pd
 import os
 
-dir = os.getcwd()
-print(dir)
-movies = pd.read_csv("items.csv")
-ratings = pd.read_csv("ratings.csv")
+movies = pd.read_csv("Data/items.csv")
+ratings = pd.read_csv("Data/ratings.csv")
 
 @app.get('/collaborative/{user_id}')
 async def root1(user_id):
