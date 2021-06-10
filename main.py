@@ -6,9 +6,12 @@ from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 import implicit
 import pandas as pd
+import os
 
-movies = pd.read_csv(r"Data\items.csv")
-ratings = pd.read_csv(r"Data\ratings.csv")
+dir = os.getcwd()
+print(dir)
+movies = pd.read_csv("items.csv")
+ratings = pd.read_csv("ratings.csv")
 
 @app.get('/collaborative/{user_id}')
 async def root1(user_id):
