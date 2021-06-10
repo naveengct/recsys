@@ -1,0 +1,9 @@
+pandas==1.2.4
+scipy==1.6.3
+implicit==0.4.4
+fastapi==0.65.2
+scikit_learn==0.24.2
+uvicorn==0.12.3
+aiofiles==0.6.0
+python-multipart==0.0.5
+jinja2==2.11.2
