@@ -15,8 +15,8 @@ ratings = pd.read_csv("ratings.csv")
 
 @app.get('/collaborative/{user_id}')
 async def root1(user_id):
-    user_item = sparse.load_npz("Data\collaborative.npz")
-    model = pickle.load(open('Models\model_collaborative.sav', 'rb'))
+    user_item = sparse.load_npz("Data/collaborative.npz")
+    model = pickle.load(open('Models/model_collaborative.sav', 'rb'))
     recommended, _ =  zip(*model.recommend(int(user_id)-1, user_item))
     recommend_frame = []
     for val in recommended:
@@ -28,8 +28,8 @@ async def root1(user_id):
 
 @app.get('/content/{input}')
 async def root2(input):
-    movie = pickle.load(open('Data\content.pkl', 'rb'))
-    model = pickle.load(open('Models\content_based.sav', 'rb'))
+    movie = pickle.load(open('Data/content.pkl', 'rb'))
+    model = pickle.load(open('Models/content_based.sav', 'rb'))
     _, indices = model.kneighbors(movie,n_neighbors=11)
     movie_ = input
     input = movies[movies['title'].str.contains(input)]
